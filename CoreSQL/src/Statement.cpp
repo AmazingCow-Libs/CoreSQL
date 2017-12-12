@@ -62,6 +62,12 @@ bool Statement::Step() const
     return false;
 }
 
+void Statement::Execute() const
+{
+    if(sqlite3_step(GetABI()) != SQLITE_DONE)
+        ThrowLastError();
+}
+
 
 //------------------------------------------------------------------------//
 // Bind Methods                                                           //
@@ -116,7 +122,10 @@ void Statement::Bind(const int index, std::string &&value) const
 //------------------------------------------------------------------------//
 // Helper Methods                                                         //
 //------------------------------------------------------------------------//
-sqlite3_stmt* Statement::GetABI() const noexcept { return m_handle.Get(); }
+sqlite3_stmt* Statement::GetABI() const noexcept
+{
+    return m_handle.Get();
+}
 
 
 //------------------------------------------------------------------------//

@@ -82,12 +82,8 @@ public:
     //------------------------------------------------------------------------//
     // "Action" Methods                                                       //
     //------------------------------------------------------------------------//
-    bool Step() const;
-
-    void Execute() const
-    {
-        Step();
-    }
+    bool Step   () const;
+    void Execute() const;
 
     template <typename ...Values>
     void Reset(Values && ...values)
