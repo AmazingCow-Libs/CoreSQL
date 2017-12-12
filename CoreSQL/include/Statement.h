@@ -105,6 +105,18 @@ public:
     template <typename ...Values>
     void BindAll(Values && ...values) const
     {
+        COREASSERT_ONLY_IN_DEBUG({
+            constexpr auto values_count  = sizeof...(values);
+            const auto stmt_params_count =  sqlite3_bind_parameter_count(GetABI());
+
+            COREASSERT_VERIFY(
+                values_count == stmt_params_count,
+                "Count mismatch - Values: (%d) - Bind Parameters: (%d)",
+                values_count,
+                stmt_params_count
+            );
+        });
+
         BindHelper(1, std::forward<Values>(values) ...);
     }
 
