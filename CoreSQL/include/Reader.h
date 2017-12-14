@@ -1,9 +1,10 @@
 #pragma once
 // std
 #include <map>
+// CoreHandle
+#include "CoreHandle/CoreHandle.h"
 // CoreSQL
 #include "CoreSQL_Utils.h"
-#include "Handle.h"
 #include "SQLException.h"
 
 NS_CORESQL_BEGIN

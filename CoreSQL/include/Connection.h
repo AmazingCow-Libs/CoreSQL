@@ -1,9 +1,11 @@
 #pragma once
 
+// CoreHandle
+#include "CoreHandle/CoreHandle.h"
 // CoreSQL
 #include "CoreSQL_Utils.h"
 #include "SQLException.h"
-#include "Handle.h"
+
 
 NS_CORESQL_BEGIN
 
@@ -14,7 +16,7 @@ class Connection
     //------------------------------------------------------------------------//
 private:
     struct ConnectionHandleTraits
-        : HandleTraits<sqlite3 *>
+        : CoreHandle::HandleTraits<sqlite3 *>
     {
         static void Close(Type value) noexcept
         {
@@ -32,7 +34,7 @@ private:
     // Type Aliases                                                           //
     //------------------------------------------------------------------------//
 private:
-    using ConnectionHandle = Handle<ConnectionHandleTraits>;
+    using ConnectionHandle = CoreHandle::Handle<ConnectionHandleTraits>;
 
 
     //------------------------------------------------------------------------//

@@ -1,9 +1,9 @@
 #pragma once
-
+// CoreHandle
+#include "CoreHandle/CoreHandle.h"
 // CoreSQL
 #include "CoreSQL_Utils.h"
 #include "SQLException.h"
-#include "Handle.h"
 #include "Reader.h"
 #include "Connection.h"
 
@@ -17,7 +17,7 @@ class Statement
     //------------------------------------------------------------------------//
 private:
     struct StatementHandleTraits
-        : HandleTraits<sqlite3_stmt *>
+        : CoreHandle::HandleTraits<sqlite3_stmt *>
     {
         static void Close(Type value) noexcept
         {
@@ -35,7 +35,7 @@ private:
     // Type Aliases                                                           //
     //------------------------------------------------------------------------//
 private:
-    using StatementHandle = Handle<StatementHandleTraits>;
+    using StatementHandle = CoreHandle::Handle<StatementHandleTraits>;
 
 
     //------------------------------------------------------------------------//
